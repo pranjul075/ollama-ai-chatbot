@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>AI Chatbot - Pranjul Katiyar</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="sidebar">
+
+<div class="logo">
+<i class="fa-solid fa-robot"></i>
+<span>AI Assistant</span>
+</div>
+
+<div class="creator">
+<p>Created by</p>
+<strong>Pranjul Katiyar</strong>
+
+<div class="links">
+<a href="https://github.com/pranjul075" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+
+<a href="https://linkedin.com/in/pranjulkatiyar" target="_blank">
+<i class="fab fa-linkedin"></i>
+</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="chat-section">
+
+<div id="chat-box" class="chat-box"></div>
+
+<div class="input-area">
+
+<input id="message" placeholder="Message AI Assistant..." />
+
+<button onclick="sendMessage()">
+<i class="fa-solid fa-paper-plane"></i>
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const chatBox = document.getElementById("chat-box")
+
+async function sendMessage(){
+
+const input = document.getElementById("message")
+const msg = input.value.trim()
+
+if(msg === "") return
+chatBox.innerHTML += `
+<div class="message user">
+${msg}
+</div>
+`
+input.value=""
+
+chatBox.innerHTML += `
+<div class="message ai" id="loading">
+ AI is typing...
+</div>
+`
+
+chatBox.scrollTop = chatBox.scrollHeight
+
+try{
+
+const res = await fetch("/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify({message:msg})
+})
+
+const data = await res.json()
+
+document.getElementById("loading").remove()
+
+
+chatBox.innerHTML += `
+<div class="message ai">
+ ${marked.parse(data.reply)}
+</div>
+`
+
+chatBox.scrollTop = chatBox.scrollHeight
+
+}catch(error){
+
+document.getElementById("loading").remove()
+
+chatBox.innerHTML += `
+<div class="message ai">
+⚠️ Error connecting to AI
+</div>
+`
+
+}
+
+}
+
+document.getElementById("message").addEventListener("keypress", function(e){
+
+if(e.key === "Enter"){
+sendMessage()
+}
+
+})
+
+</script>
+
+</body>
+</html>
