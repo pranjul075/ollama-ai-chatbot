@@ -15,7 +15,7 @@ This project demonstrates how to integrate a locally hosted Large Language Model
 	•	🤖 AI typing indicator
 	•	🎨 Clean chat UI with HTML + CSS
 
-⸻
+
 
 🧠 Tech Stack
 
@@ -48,15 +48,15 @@ Model Used
 
 📂 Project Structure
 
-    ollama-ai-chatbot
-│
-├── server.js          # Express backend server
-├── package.json       # Project dependencies
+ollama-ai-chatbot
+
+-─ server.js          # Express backend server
+── package.json       # Project dependencies
 │
 └── public
-    ├── index.html     # Chat UI
-    ├── style.css      # Chat styling
-    └── script.js      # Chat logic
+     ── index.html     # Chat UI
+     ── style.css      # Chat styling
+     ── script.js      # Chat logic
 
 🔮 Future Improvements
 
@@ -70,10 +70,10 @@ Possible upgrades for this project:
 👨‍💻 Author
 
 Pranjul Katiyar
-	•	GitHub: https://github.com/pranjul075
+
+	•	GitHub:   https://github.com/pranjul075
 	•	LinkedIn: https://linkedin.com/in/pranjulkatiyar
 
 ⭐ Support
 
 If you found this project useful, consider giving it a star ⭐ on GitHub!
-:::
